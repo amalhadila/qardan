@@ -53,8 +53,8 @@ class HomeViewBody extends StatelessWidget {
               ),
               subtitle: Text('الأربعاء 7 أغسطس 2024\n29°C'),
               trailing: Image.asset('assets/image5.png',
-              width: 64.sp,
-              height: 45.sp,),
+              width: 64.w,
+              height: 45.h,),
             ),
           ),
           SizedBox(height: 20.h),
@@ -83,7 +83,7 @@ class HomeViewBody extends StatelessWidget {
                   padding:  EdgeInsets.only(left:24.w),
                   child: Container(
                      height:93.h,
-                     width:156.sp ,
+                     width:156.w ,
                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
                     child: Image.asset('assets/WhatsApp Image 2024-12-27 at 17.47.28_36c47a80 1.png', fit: BoxFit.fill)),
                 );
@@ -103,7 +103,7 @@ class HomeViewBody extends StatelessWidget {
               ),
            
           ),
-          SizedBox(height: 14.sp,),
+          SizedBox(height: 14.h,),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
@@ -117,7 +117,7 @@ class HomeViewBody extends StatelessWidget {
                        _indicator(Color(0xff4E99A1), 'الفوسفـات'),
                     ],
                   ),
-                  SizedBox(width: 110.sp,),
+                  SizedBox(width: 110.w,),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,

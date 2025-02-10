@@ -50,7 +50,7 @@ class WelcomeViewBody extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorApp.primaryColor,
-                        minimumSize: Size(324.sp, 46.sp),
+                        minimumSize: Size(324.w, 46.h),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(9.0),
@@ -63,7 +63,7 @@ class WelcomeViewBody extends StatelessWidget {
                       ),
                       
                     ),
-                     SizedBox(height: 140.sp),
+                     SizedBox(height: 140.h),
             ],
           ),
         ),

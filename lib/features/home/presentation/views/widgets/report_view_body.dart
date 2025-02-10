@@ -42,11 +42,11 @@ class _ReportViewBodyState extends State<ReportViewBody> {
             Icon(Icons.align_vertical_bottom_sharp),
             Text('التقارير',style: Styles.textStyle24_inter.copyWith(color: ColorApp.black),)
            ],),
-           SizedBox(height: 40.sp,),
+           SizedBox(height: 40.h,),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 12),
-              height: 52.sp,
-              width: 336.sp,
+              height: 52.h,
+              width: 336.w,
               decoration: BoxDecoration(
                // border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(8),
@@ -70,7 +70,7 @@ class _ReportViewBodyState extends State<ReportViewBody> {
               ),
             ),
            
-            SizedBox(height: 25.sp),
+            SizedBox(height: 25.h),
             Text(
               "القطاعات",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

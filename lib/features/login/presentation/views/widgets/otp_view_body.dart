@@ -52,7 +52,7 @@ class OtpViewBody extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 15.sp),
+                    SizedBox(height: 15.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(4, (index) {
@@ -84,7 +84,7 @@ class OtpViewBody extends StatelessWidget {
                         );
                       }),
                     ),
-                    SizedBox(height: 37.sp),
+                    SizedBox(height: 37.h),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(context,
@@ -92,14 +92,14 @@ class OtpViewBody extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorApp.primaryColor,
-                        minimumSize: Size(324.sp, 46.sp),
+                        minimumSize: Size(324.w, 46.h),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(9.0),
                         child: Text('تحقق', style: Styles.textStyle24_inter),
                       ),
                     ),
-                    SizedBox(height: 23.sp),
+                    SizedBox(height: 23.h),
                     Text(
                       'إعادة إرسال رمز التأكيد 29:00',
                       style: Styles.textStyle14_inter,

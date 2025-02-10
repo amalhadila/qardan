@@ -36,7 +36,7 @@ class TasksViewBody extends StatelessWidget {
                 },
                  style: ElevatedButton.styleFrom(
                           backgroundColor: ColorApp.primaryColor,
-                          minimumSize: Size(94.sp, 46.sp),
+                          minimumSize: Size(94.w, 46.h),
                         ),
                 child: Text('تمام',style: Styles.textStyle18.copyWith(fontWeight: FontWeight.w600,color: ColorApp.backgroundColor),),
               ),

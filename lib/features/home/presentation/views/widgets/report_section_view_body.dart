@@ -28,7 +28,7 @@ class ReportSectionViewBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
            Row(children: [
-             SizedBox(height: 40.sp,),
+             SizedBox(height: 40.h,),
             Icon(Icons.location_on_outlined,),
             Text('قطاع 1',style: Styles.textStyle18_inter.copyWith(color: ColorApp.black),)
            ],),
@@ -41,7 +41,7 @@ class ReportSectionViewBody extends StatelessWidget {
                   Text('مؤشرات', style: Styles.textStyle14.copyWith(color: Color(0xff030E56))),
                 ],
               ),
-            SizedBox(height: 14.sp,),
+            SizedBox(height: 14.h,),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
@@ -55,7 +55,7 @@ class ReportSectionViewBody extends StatelessWidget {
                        _indicator(Color(0xff4E99A1), 'الفوسفـات'),
                     ],
                   ),
-                  SizedBox(width: 110.sp,),
+                  SizedBox(width: 110.w,),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,9 +234,9 @@ class WeatherRow extends StatelessWidget {
         children: [
            Text(label, style: Styles.textStyle14),
           
-          SizedBox(width: 18.sp),
+          SizedBox(width: 18.w),
           Text(value, style: Styles.textStyle18),
-          SizedBox(width: 45.sp),
+          SizedBox(width: 45.w),
           Icon(icon),
          
         ],

@@ -34,8 +34,8 @@ class _SplashViewmodelState extends State<SplashViewmodel> {
               
                         
               const Spacer(flex: 3,),
-              Image.asset(AssetImages.splash,width:207.sp,
-              height:246.sp,fit: BoxFit.fill,),                      
+              Image.asset(AssetImages.splash,width:207.w,
+              height:246.h,fit: BoxFit.fill,),                      
                Text('Qardan',style: Styles.textStyle20,),        
              
              

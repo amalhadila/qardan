@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
+import 'package:qardan/features/profile/presentation/views/contact_us_view.dart';
+import 'package:qardan/features/profile/presentation/views/weather_view.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -20,7 +22,7 @@ class ProfileViewBody extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(height: 29.sp),
+          SizedBox(height: 29.h),
            Column(
               children: [
                 CircleAvatar(
@@ -32,14 +34,15 @@ class ProfileViewBody extends StatelessWidget {
               ],
             ),
           
-          SizedBox(height: 24.sp),
+          SizedBox(height: 24.h),
           Expanded(
             child: ListView(
               children: [
                 profileOption(Icons.person_outlined, 'ملفي الشخصي'),
                 profileOption(Icons.settings_outlined, 'الإعدادات'),
-                profileOption(Icons.cloud, 'الطقس'),
-                profileOption(Icons.handshake_outlined, 'شاركنا مشكلتك'),
+                profileOption(Icons.cloud, 'الطقس',ontap:  (){ Navigator.push(context, MaterialPageRoute(builder:(context) => WeatherView()));}),
+                profileOption(Icons.handshake_outlined, 'شاركنا مشكلتك',ontap:  (){ Navigator.push(context, MaterialPageRoute(builder:(context) => ContactUsView()));}
+ ),
               ],
             ),
           ),
@@ -48,16 +51,19 @@ class ProfileViewBody extends StatelessWidget {
     );
   }
 
-  Widget profileOption(IconData icon, String title, {Color iconColor = ColorApp.primaryColor}) {
+  Widget profileOption(IconData icon, String title, {void Function()? ontap,Color iconColor = ColorApp.primaryColor}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12).r,
-      child: Card(
-        color: ColorApp.backgroundColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),side: BorderSide(color: Color(0xffE6E6E6))),
-        child: ListTile(
-          leading: Icon(icon, color: iconColor),
-          title: Text(title, style: Styles.textStyle14),
-          trailing: Icon(Icons.arrow_forward, color: Color(0xff7A7A7A)),
+      child: GestureDetector(
+        onTap: ontap,
+        child: Card(
+          color: ColorApp.backgroundColor,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),side: BorderSide(color: Color(0xffE6E6E6))),
+          child: ListTile(
+            leading: Icon(icon, color: iconColor),
+            title: Text(title, style: Styles.textStyle14),
+            trailing: Icon(Icons.arrow_forward, color: Color(0xff7A7A7A)),
+          ),
         ),
       ),
     );

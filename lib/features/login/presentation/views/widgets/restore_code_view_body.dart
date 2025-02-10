@@ -34,11 +34,11 @@ class RestoreCodeViewBody extends StatelessWidget {
             children: [
              
               _buildInputField("الإسم", "الإسم", Icons.person_outlined),
-             SizedBox(height: 18.sp),
+             SizedBox(height: 18.h),
               _buildInputField("الرقم القومي", "ادخل الرقم القومي", Icons.verified_user_outlined),
-             SizedBox(height: 18.sp),
+             SizedBox(height: 18.h),
               _buildInputField("رقم الهاتف", "ادخل رقم الهاتف", Icons.phone_outlined),
-              SizedBox(height: 49.sp),
+              SizedBox(height: 49.h),
            ElevatedButton(
                   onPressed: () {
                    Navigator.push(context, MaterialPageRoute(builder:(context) => OtpView()));
@@ -46,7 +46,7 @@ class RestoreCodeViewBody extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorApp.primaryColor,
-                    minimumSize: Size(324.sp, 46.sp),
+                    minimumSize: Size(324.w, 46.h),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(9.0),
@@ -58,7 +58,7 @@ class RestoreCodeViewBody extends StatelessWidget {
                   ),
                 ),
              
-               SizedBox(height: 200.sp,)
+               SizedBox(height: 200.h,)
             ],
           ),
         ),
