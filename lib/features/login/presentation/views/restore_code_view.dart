@@ -6,6 +6,6 @@ class RestoreCodeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const RestoreCodeViewBody();
+    return  RestoreCodeViewBody();
   }
 }

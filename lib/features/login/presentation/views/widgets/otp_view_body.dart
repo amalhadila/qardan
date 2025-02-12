@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/services.dart';
 import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
-import 'package:qardan/features/login/presentation/views/enter_code_view.dart';
 import 'package:qardan/features/login/presentation/views/welcome_view.dart';
 
 class OtpViewBody extends StatelessWidget {
@@ -11,12 +10,16 @@ class OtpViewBody extends StatelessWidget {
 
   final List<TextEditingController> controllers =
       List.generate(4, (index) => TextEditingController());
+        GlobalKey<FormState> globalKey = GlobalKey();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorApp.primaryColor,
-      body: Column(
+      body:Form(
+  key: globalKey,
+  child:  Column(
         children: [
           Expanded(
             flex: 3,
@@ -60,7 +63,13 @@ class OtpViewBody extends StatelessWidget {
                           width: 50,
                           height: 50,
                           margin: EdgeInsets.symmetric(horizontal: 5),
-                          child: TextField(
+                          child: TextFormField(
+                   validator: (value){
+        if (value!.isEmpty){
+          return 'field is required';
+        } 
+        return null;
+      },
                             controller: controllers[index],
                             keyboardType: TextInputType.number,
                             textAlign: TextAlign.center,
@@ -87,8 +96,9 @@ class OtpViewBody extends StatelessWidget {
                     SizedBox(height: 37.h),
                     ElevatedButton(
                       onPressed: () {
+                         if (globalKey.currentState!.validate()) {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => WelcomeView()));
+                            MaterialPageRoute(builder: (context) => WelcomeView()));}
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorApp.primaryColor,
@@ -110,7 +120,7 @@ class OtpViewBody extends StatelessWidget {
             ),
           ),
         ],
-      ),
+      ),)
     );
   }
 }

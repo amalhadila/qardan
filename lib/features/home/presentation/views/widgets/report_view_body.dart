@@ -22,10 +22,8 @@ class _ReportViewBodyState extends State<ReportViewBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorApp.backgroundColor,
       appBar: AppBar(
         title: Text("التقارير"),
-        backgroundColor: Colors.white,
         centerTitle: true,
         leading:  IconButton(
                           icon: Icon(Icons.arrow_back_ios),

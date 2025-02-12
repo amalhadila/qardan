@@ -84,11 +84,9 @@ class onboardingScreenViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorApp.backgroundColor,
 
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: ColorApp.backgroundColor,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(12, 80, 12, 12),

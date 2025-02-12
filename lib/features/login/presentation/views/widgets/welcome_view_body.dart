@@ -11,7 +11,6 @@ class WelcomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorApp.backgroundColor,
       body: SingleChildScrollView(
         child: Center(
           child: Column(

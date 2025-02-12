@@ -13,39 +13,7 @@ class TasksViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _showTipsDialog() async {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Center(child: Text('نصائح عشان نشخص صح',style: Styles.textStyle16.copyWith(color: ColorApp.primaryColor),)),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('1- اتأكد إن المساحة كويسة قبل التصوير.',style: Styles.textStyle13,),
-              Text('2- حاول تقرب التفاصيل عشان الصورة تكون واضحة.',style: Styles.textStyle13),
-              Text('3- جرب تغيير الزاوية لتصوير أكثر دقة.',style: Styles.textStyle13),
-            ],
-          ),
-          actions: [
-            Center(
-              child: TextButton(
-                onPressed: () {
-                 Navigator.push(context, MaterialPageRoute(builder:(context) => CaptureView()));
-                },
-                 style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorApp.primaryColor,
-                          minimumSize: Size(94.w, 46.h),
-                        ),
-                child: Text('تمام',style: Styles.textStyle18.copyWith(fontWeight: FontWeight.w600,color: ColorApp.backgroundColor),),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
+
 
     return Scaffold(
       appBar: AppBar(
@@ -111,7 +79,6 @@ class TasksViewBody extends StatelessWidget {
                              ),
                              GestureDetector(
                               onTap: (){
-                               _showTipsDialog();
                               },
                                child: Container(
                                 decoration: BoxDecoration(
@@ -123,8 +90,8 @@ class TasksViewBody extends StatelessWidget {
                                   child: Row(mainAxisAlignment: MainAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
                                    children: [
-                                    Text('الكاميرا',style: Styles.textStyle15_inter,),
-                                    Icon(Icons.camera_enhance,color: Colors.white,)
+                                    Text('الري',style: Styles.textStyle15_inter,),
+                                    Icon(Icons.water_drop,color: Colors.white,)
                                    ],
                                      
                                   ),

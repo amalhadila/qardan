@@ -8,7 +8,6 @@ class LangView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: ColorApp.backgroundColor,
       body: LangViewBody(),
     );
   }

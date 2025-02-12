@@ -6,15 +6,14 @@ import 'package:qardan/features/login/presentation/views/enter_code_view.dart';
 import 'package:qardan/features/login/presentation/views/otp_view.dart';
 
 class RestoreCodeViewBody extends StatelessWidget {
-  const RestoreCodeViewBody({super.key});
+   RestoreCodeViewBody({super.key});
+  GlobalKey<FormState> globalKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: ColorApp.backgroundColor,
       appBar: AppBar(
-        backgroundColor: ColorApp.backgroundColor,
-        elevation: 0,
+         elevation: 0,
         title: Center(
               child: Text(
                 "استرجاع الكود",
@@ -26,7 +25,9 @@ class RestoreCodeViewBody extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
       ),
-      body: SingleChildScrollView(
+      body:Form(
+  key: globalKey,
+  child:  SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -41,7 +42,8 @@ class RestoreCodeViewBody extends StatelessWidget {
               SizedBox(height: 49.h),
            ElevatedButton(
                   onPressed: () {
-                   Navigator.push(context, MaterialPageRoute(builder:(context) => OtpView()));
+                      if (globalKey.currentState!.validate()) {
+                   Navigator.push(context, MaterialPageRoute(builder:(context) => OtpView()));}
         
                   },
                   style: ElevatedButton.styleFrom(
@@ -62,7 +64,7 @@ class RestoreCodeViewBody extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      ),)
     );
   }
 
@@ -75,7 +77,13 @@ class RestoreCodeViewBody extends StatelessWidget {
           style: Styles.textStyle14,
         ),
         SizedBox(height: 8),
-        TextField(
+      TextFormField(
+                   validator: (value){
+        if (value!.isEmpty){
+          return 'field is required';
+        } 
+        return null;
+      },
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: Styles.textStyle14.copyWith(color:ColorApp.hintColor ),

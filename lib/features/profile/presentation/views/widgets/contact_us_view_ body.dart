@@ -49,11 +49,9 @@ class _ContactUsViewbodyState extends State<ContactUsViewbody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorApp.backgroundColor,
       appBar: AppBar(
         title: Text('شاركنا مشكلتك'),
-        backgroundColor: ColorApp.backgroundColor,
-        leading: IconButton(
+          leading: IconButton(
           icon: Icon(Icons.arrow_back_ios, color: ColorApp.black),
           onPressed: () => Navigator.pop(context),
         ),

@@ -17,51 +17,53 @@ class LandMapViewBody extends StatelessWidget {
                           onPressed: () => Navigator.pop(context),
                         ),
       ),
-      body: Column(
-        children: [
-           Center(child: customDivider()),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-               
-               
-                Expanded(
-                  child: GridView.count(
-                    shrinkWrap: true,
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    children: [
-                      landButton('٣', Color(0xff4CAF50)),
-                      Container(),
-                      landButton('٤', Color(0xff4CAF50)),
-                      landButton('١', Color(0xff4CAF50)),
-                       landButton('٥', Color(0xff4CAF50)),
-                      landButton('٢', Color(0xff4CAF50)),                 
-                      landButton('٦', Color(0xff005B04)),
-                    ],
-                    
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+             Center(child: customDivider()),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                 
+                 
+                  Expanded(
+                    child: GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      children: [
+                        landButton('٣', Color(0xff4CAF50)),
+                        Container(),
+                        landButton('٤', Color(0xff4CAF50)),
+                        landButton('١', Color(0xff4CAF50)),
+                         landButton('٥', Color(0xff4CAF50)),
+                        landButton('٢', Color(0xff4CAF50)),                 
+                        landButton('٦', Color(0xff005B04)),
+                      ],
+                      
+                    ),
                   ),
-                ),
-                 SizedBox(width: 20),
-                 Center(
-                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                       Text('نقطة البداية', style: Styles.textStyle14),
-                        SizedBox(height: 5),
-                      Icon(Icons.radio_button_unchecked, size: 30, color: Colors.grey),
-                     
-                     
-                    ],
-                               ),
-                 ),
-              ],
+                   SizedBox(width: 20),
+                   Center(
+                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                         Text('نقطة البداية', style: Styles.textStyle14),
+                          SizedBox(height: 5),
+                        Icon(Icons.radio_button_unchecked, size: 30, color: Colors.grey),
+                       
+                       
+                      ],
+                                 ),
+                   ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

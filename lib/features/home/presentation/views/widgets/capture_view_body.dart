@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qardan/core/theme/color_app.dart';
+import 'package:qardan/core/theme/styles.dart';
 import 'package:qardan/features/home/presentation/views/widgets/gallery_view_body.dart';
 
 class CaptureViewBody extends StatefulWidget {
@@ -15,6 +16,39 @@ class CaptureViewBody extends StatefulWidget {
 }
 
 class _CaptureViewBodyState extends State<CaptureViewBody> {
+    Future<void> _showTipsDialog() async {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Center(child: Text('نصائح عشان نشخص صح',style: Styles.textStyle16.copyWith(color: ColorApp.primaryColor),)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('1- اتأكد إن المساحة كويسة قبل التصوير.',style: Styles.textStyle13,),
+              Text('2- حاول تقرب التفاصيل عشان الصورة تكون واضحة.',style: Styles.textStyle13),
+              Text('3- جرب تغيير الزاوية لتصوير أكثر دقة.',style: Styles.textStyle13),
+            ],
+          ),
+          actions: [
+            Center(
+              child: TextButton(
+                onPressed: () async{
+              Navigator.pop(context);
+              await _initializeCamera();
+                },
+                 style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorApp.primaryColor,
+                          minimumSize: Size(94.w, 46.h),
+                        ),
+                child: Text('تمام',style: Styles.textStyle18.copyWith(fontWeight: FontWeight.w600,color: ColorApp.backgroundColor),),
+              ),
+            ),
+          ],
+        );
+      },
+    );}
    CameraController? _controller;
   List<File> _capturedImages = [];
   final ImagePicker _picker = ImagePicker();
@@ -22,7 +56,9 @@ class _CaptureViewBodyState extends State<CaptureViewBody> {
   @override
   void initState() {
     super.initState();
-    _initializeCamera();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+    _showTipsDialog();
+  });
   }
 
   Future<void> _initializeCamera() async {
@@ -66,7 +102,6 @@ class _CaptureViewBodyState extends State<CaptureViewBody> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
       body:
           CameraPreview(_controller!), 
                   

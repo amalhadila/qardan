@@ -14,62 +14,62 @@ class WeatherViewBody extends StatelessWidget {
     {"day": "الاثنين", "temp": "16℃"},
   ];
     return Scaffold(
-      backgroundColor: ColorApp.backgroundColor,
       appBar: AppBar(
         title: Text('الطقس'),
-        backgroundColor: ColorApp.backgroundColor,
-        elevation: 0,
+          elevation: 0,
         actions: [IconButton(onPressed: (){},icon:Icon(Icons.edit_outlined))],
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(16),
-            color: Color(0xffE3FAFF),
-            child: Column(
-              children: [
-                Text(
-                  'اليوم 11 ديسمبر, المنيا',
-                  style: Styles.textStyle20,
-                ),
-                SizedBox(height: 8),
-                Icon(Icons.wb_sunny, size: 50, color: Colors.amber),
-                SizedBox(height: 8),
-                Text('17°C', style: Styles.textStyle20,),
-                Text('22°C / 11°C', style:Styles.textStyle15),
-                Text('الجو النهاردة مشمس.', style: Styles.textStyle15),
-                SizedBox(height: 8),
-                Text(' ☁️ 0%', style: Styles.textStyle15),
-                SizedBox(height: 8),
-                Text('النهاردة يوم مش كويس لرش المبيدات الحشرية.', style: Styles.textStyle15.copyWith(color: Color(0xff8B978B))),
-                SizedBox(height: 8),
-                Text('غروب الشمس 5:12 م', style: Styles.textStyle15),
-              ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(16),
+              color: Color(0xffE3FAFF),
+              child: Column(
+                children: [
+                  Text(
+                    'اليوم 11 ديسمبر, المنيا',
+                    style: Styles.textStyle20,
+                  ),
+                  SizedBox(height: 8),
+                  Icon(Icons.wb_sunny, size: 50, color: Colors.amber),
+                  SizedBox(height: 8),
+                  Text('17°C', style: Styles.textStyle20,),
+                  Text('22°C / 11°C', style:Styles.textStyle15),
+                  Text('الجو النهاردة مشمس.', style: Styles.textStyle15),
+                  SizedBox(height: 8),
+                  Text(' ☁️ 0%', style: Styles.textStyle15),
+                  SizedBox(height: 8),
+                  Text('النهاردة يوم مش كويس لرش المبيدات الحشرية.', style: Styles.textStyle15.copyWith(color: Color(0xff8B978B))),
+                  SizedBox(height: 8),
+                  Text('غروب الشمس 5:12 م', style: Styles.textStyle15),
+                ],
+              ),
+            ),
+            SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text('الأيام الأربعة القادمة', style: Styles.textStyle15),
+              ),
+            ),
+           Container(
+            color: Color(0xffF5FAFF),
+            height: 92.h, 
+            child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: forecast.length,
+        itemBuilder: (context, index) {
+          return _buildWeatherDay(forecast[index]["day"]!, forecast[index]["temp"]!);
+        },
             ),
           ),
-          SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Text('الأيام الأربعة القادمة', style: Styles.textStyle15),
-            ),
-          ),
-         Container(
-          color: Color(0xffF5FAFF),
-    height: 92.h, 
-    child: ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: forecast.length,
-      itemBuilder: (context, index) {
-        return _buildWeatherDay(forecast[index]["day"]!, forecast[index]["temp"]!);
-      },
-    ),
-  ),
-
-          SizedBox(height: 16),
-          Text('مش متوقع سقوط أمطار الأسبوع ده', style: Styles.textStyle14),
-        ],
+        
+            SizedBox(height: 16),
+            Text('مش متوقع سقوط أمطار الأسبوع ده', style: Styles.textStyle14),
+          ],
+        ),
       ),
     );
   }

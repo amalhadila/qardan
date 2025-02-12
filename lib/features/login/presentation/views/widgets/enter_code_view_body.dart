@@ -13,6 +13,8 @@ import 'package:qardan/features/onboarding/views/onboarding_view.dart';
 class EnterCodeViewBody extends StatelessWidget {
    EnterCodeViewBody({super.key});
  final TextEditingController _otpController = TextEditingController();
+   GlobalKey<FormState> globalKey = GlobalKey();
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +35,9 @@ class EnterCodeViewBody extends StatelessWidget {
 }
 
     return Scaffold(
-       backgroundColor: ColorApp.backgroundColor,
-      body: SingleChildScrollView(
+      body:Form(
+  key: globalKey,
+  child:  SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -66,7 +69,13 @@ class EnterCodeViewBody extends StatelessWidget {
               ),
               Padding(
                   padding:  EdgeInsets.symmetric(horizontal: 20.w),
-                child: TextField(
+                child: TextFormField(
+                   validator: (value){
+        if (value!.isEmpty){
+          return 'field is required';
+        } 
+        return null;
+      },
                   controller: _otpController,
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
@@ -78,7 +87,8 @@ class EnterCodeViewBody extends StatelessWidget {
                SizedBox(height: 100.h),
                ElevatedButton(
                   onPressed: () async{
-                    await _checkLocationPermission();
+                      if (globalKey.currentState!.validate()) {
+                    await _checkLocationPermission();}
                   
         
                   },
@@ -115,7 +125,7 @@ class EnterCodeViewBody extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      ),)
     );
   }
 }

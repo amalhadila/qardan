@@ -53,7 +53,6 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
 
       return await Geolocator.getCurrentPosition();
     } catch (e) {
-      // Handle errors or permission denials here
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -94,44 +93,46 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
     );},
                         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/ep_location.png', width: 232.w,height: 264.h,fit: BoxFit.fill,), 
-            SizedBox(height: 20),
-            Text(
-              'شغل الموقع بتاعك',
-              style: Styles.textStyle20.copyWith(fontWeight: FontWeight.w700),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'افتحتنا الموقع بتاعك علشان نقدر نشوف الأرض بتاعتك، '
-              'ونتابع معاك كل حاجة تخص الزراعة.',
-              textAlign: TextAlign.center,
-              style: Styles.textStyle16.copyWith(color: Color(0xff8E8E8E)),
-            ),
-            SizedBox(height: 20),
-           ElevatedButton(
-                      onPressed: () async {
-                        await _determinePosition().then((value) async {
-              setState(() {
-                _currentPosition = value;
-                print(_currentPosition?.latitude.toString());
-                print(_currentPosition?.longitude.toString());
-              }); });
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => BottomBarView()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorApp.primaryColor,
-                        minimumSize: Size(324.w, 46.h),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(9.0),
-                        child: Text('السماح بالموقع', style: TextStyle(color: Colors.white)),
-            ),),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/ep_location.png', width: 232.w,height: 264.h,fit: BoxFit.fill,), 
+              SizedBox(height: 20.h),
+              Text(
+                'شغل الموقع بتاعك',
+                style: Styles.textStyle20.copyWith(fontWeight: FontWeight.w700),
+              ),
+              SizedBox(height: 10.h),
+              Text(
+                'افتحتنا الموقع بتاعك علشان نقدر نشوف الأرض بتاعتك، '
+                'ونتابع معاك كل حاجة تخص الزراعة.',
+                textAlign: TextAlign.center,
+                style: Styles.textStyle16.copyWith(color: Color(0xff8E8E8E)),
+              ),
+              SizedBox(height: 40.h),
+             ElevatedButton(
+                        onPressed: () async {
+                          await _determinePosition().then((value) async {
+                setState(() {
+                  _currentPosition = value;
+                  print(_currentPosition?.latitude.toString());
+                  print(_currentPosition?.longitude.toString());
+                }); });
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => BottomBarView()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorApp.primaryColor,
+                          minimumSize: Size(324.w, 46.h),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(9.0),
+                          child: Text('السماح بالموقع', style: TextStyle(color: Colors.white)),
+              ),),
+            ],
+          ),
         ),
       ),
     );
