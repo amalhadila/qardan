@@ -19,13 +19,13 @@ class _SplashViewmodelState extends State<SplashViewmodel> {
     super.initState();
     Future.delayed(const Duration(seconds: 3),(){
       Navigator.push(context, MaterialPageRoute(builder:(context) => LangView()));
-      
+           
     });
   }
   Widget build(BuildContext context) {
     return  SafeArea(
       child: Padding(
-        padding:  EdgeInsets.symmetric(horizontal:5.0.sp),
+        padding:  EdgeInsets.symmetric(horizontal:5.0).r,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

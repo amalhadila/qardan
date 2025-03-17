@@ -1,48 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:qardan/core/shared_widgets.dart/loading_widgets.dart';
 import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
+import 'package:qardan/features/home/presentation/manager/cubit/weather_cubit_cubit.dart';
 
 class WeatherViewBody extends StatelessWidget {
-    const WeatherViewBody({super.key});
+    const WeatherViewBody({super.key, this.lat, this.long});
+final double? lat;
+  final double? long;
   @override
   Widget build(BuildContext context) {
-      List<Map<String, String>> forecast = [
-    {"day": "الجمعة", "temp": "16℃"},
-    {"day": "السبت", "temp": "16℃"},
-    {"day": "الأحد", "temp": "15℃"},
-    {"day": "الاثنين", "temp": "16℃"},
-  ];
+    
     return Scaffold(
       appBar: AppBar(
         title: Text('الطقس'),
           elevation: 0,
         actions: [IconButton(onPressed: (){},icon:Icon(Icons.edit_outlined))],
       ),
-      body: SingleChildScrollView(
+      body:BlocBuilder<WeatherCubitCubit, WeatherCubitState>(
+      builder: (context, state) {
+        if (state is WeatherCubitSuccess){
+            List<Map<String, String>> forecast = [
+    {"day": "${state.Weather["tomorrow_day"]}", "temp": "${state.Weather["tomorrow_temp"]}℃"},
+    {"day": "${state.Weather["day_after_tomorrow_day"]}", "temp": "${state.Weather["day_after_tomorrow_temp"]}℃"},
+    {"day": "${state.Weather["fourth_day_day"]}", "temp": "${state.Weather["fourth_day_temp"]}℃"},
+  ];
+        return SingleChildScrollView(
         child: Column(
           children: [
             Container(
+              width: double.infinity,
               padding: EdgeInsets.all(16),
               color: Color(0xffE3FAFF),
               child: Column(
                 children: [
                   Text(
-                    'اليوم 11 ديسمبر, المنيا',
+                    '${state.Weather["city"]}\n ${state.Weather["day"]}\n ${state.Weather["date"]}',
                     style: Styles.textStyle20,
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 8),
                   Icon(Icons.wb_sunny, size: 50, color: Colors.amber),
                   SizedBox(height: 8),
-                  Text('17°C', style: Styles.textStyle20,),
-                  Text('22°C / 11°C', style:Styles.textStyle15),
-                  Text('الجو النهاردة مشمس.', style: Styles.textStyle15),
+                  Text('${state.Weather["temperature"]}°C', style: Styles.textStyle20,),
+                  //Text('22°C / 11°C', style:Styles.textStyle15),
+                  Text('${state.Weather["description"]}', style: Styles.textStyle15),
                   SizedBox(height: 8),
-                  Text(' ☁️ 0%', style: Styles.textStyle15),
-                  SizedBox(height: 8),
-                  Text('النهاردة يوم مش كويس لرش المبيدات الحشرية.', style: Styles.textStyle15.copyWith(color: Color(0xff8B978B))),
-                  SizedBox(height: 8),
-                  Text('غروب الشمس 5:12 م', style: Styles.textStyle15),
+                  //Text(' ☁️ 0%', style: Styles.textStyle15),
+                  //SizedBox(height: 8),
+                  //Text('النهاردة يوم مش كويس لرش المبيدات الحشرية.', style: Styles.textStyle15.copyWith(color: Color(0xff8B978B))),
+                  //SizedBox(height: 8),
+                  //Text('غروب الشمس 5:12 م', style: Styles.textStyle15),
                 ],
               ),
             ),
@@ -51,7 +61,7 @@ class WeatherViewBody extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Align(
                 alignment: Alignment.centerRight,
-                child: Text('الأيام الأربعة القادمة', style: Styles.textStyle15),
+                child: Text('الأيام الثلاثه القادمة', style: Styles.textStyle15),
               ),
             ),
            Container(
@@ -66,11 +76,16 @@ class WeatherViewBody extends StatelessWidget {
             ),
           ),
         
-            SizedBox(height: 16),
-            Text('مش متوقع سقوط أمطار الأسبوع ده', style: Styles.textStyle14),
           ],
         ),
-      ),
+      );}
+       if (state is WeatherCubitLoading) {
+              return  LoadingWidget();
+              }
+              if (state is WeatherCubitFailure) {
+              return Text( state.errMessage.toString());
+              }
+              return Container();})
     );
   }
 

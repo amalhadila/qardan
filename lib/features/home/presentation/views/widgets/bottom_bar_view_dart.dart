@@ -9,8 +9,9 @@ import 'package:qardan/features/home/presentation/views/widgets/tasks_view_body.
 import 'package:qardan/features/profile/presentation/views/profile_view.dart';
 
 class BottomBarViewDart extends StatefulWidget {
-  const BottomBarViewDart({super.key});
-
+  const BottomBarViewDart({super.key, this.lat, this.long});
+final double? lat;
+  final double? long;
   
   
   @override
@@ -33,11 +34,11 @@ class _BottomBarViewDartState extends State<BottomBarViewDart> {
   void initState() {
     super.initState();
     _pages = [
-     HomeView(),
+     HomeView(lat: widget.lat,long: widget.long,),
     TasksViewBody(),
     CaptureView(),
     NotificationView(),
-    ProfileView(),
+    ProfileView(lat: widget.lat,long: widget.long,),
     ];
   }
 
@@ -58,11 +59,11 @@ class _BottomBarViewDartState extends State<BottomBarViewDart> {
       selectedItemColor:  ColorApp.primaryColor,
       unselectedItemColor:Color(0xff8E8E8E),
       items: const [
-      BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.article), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.camera_enhance_outlined), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications_active), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: ''),
+       BottomNavigationBarItem(icon: Icon(Icons.home), label: 'رئيسية'),
+          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'تقارير'),
+          BottomNavigationBarItem(icon: Icon(Icons.camera_enhance_outlined), label: 'كاميرا'),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications_active), label: 'اشعارات'),
+          BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'انا'),
     ],
      
     ),

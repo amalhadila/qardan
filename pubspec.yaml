@@ -30,17 +30,21 @@ environment:
 dependencies:
   camera: 0.10.5+5
   cupertino_icons: ^1.0.8
+  dartz: ^0.10.1
+  dio: ^5.8.0+1
   easy_localization: ^3.0.7+1
   fl_chart: ^0.63.0
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.0
   flutter_localization: ^0.3.1
   flutter_screenutil: ^5.9.3
   font_awesome_icon_class: ^0.0.6
-  geolocator: ^13.0.2
   google_fonts: ^6.2.1
   image_picker: ^1.1.2
   introduction_screen: ^3.1.14
+  permission_handler: ^10.2.0  # تأكد من استخدام أحدث إصدار
+  geolocator: ^9.0.0  # تأكد من استخدام أحدث إصدار
   shared_preferences: ^2.5.2
   syncfusion_flutter_charts: 20.4.48
   weather_icons: ^3.0.0
