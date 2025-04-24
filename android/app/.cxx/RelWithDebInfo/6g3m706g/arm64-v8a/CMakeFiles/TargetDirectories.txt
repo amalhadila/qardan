@@ -1,0 +1,2 @@
+E:/my_fluttter_projects/qardan/android/app/.cxx/RelWithDebInfo/6g3m706g/arm64-v8a/CMakeFiles/edit_cache.dir
+E:/my_fluttter_projects/qardan/android/app/.cxx/RelWithDebInfo/6g3m706g/arm64-v8a/CMakeFiles/rebuild_cache.dir

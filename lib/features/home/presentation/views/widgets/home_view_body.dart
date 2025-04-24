@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qardan/core/shared_widgets.dart/loading_widgets.dart';
 import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
+import 'package:qardan/features/home/presentation/manager/cubit/farm_data_cubit.dart';
 import 'package:qardan/features/home/presentation/manager/cubit/weather_cubit_cubit.dart';
 import 'package:qardan/features/home/presentation/views/widgets/divider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -16,7 +17,7 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherCubitCubit, WeatherCubitState>(
       builder: (context, state) {
-        return SingleChildScrollView(
+        return  SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(height: 20.h),
@@ -171,120 +172,123 @@ class HomeViewBody extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10.h),
-              Container(
-                  height: 269.h,
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Center(
-                    child: SfCartesianChart(
-                      primaryXAxis: CategoryAxis(),
-                      primaryYAxis: NumericAxis(
-                        minimum: 0,
-                        maximum: 100,
-                        interval: 10,
-                      ),
-                      legend: Legend(
-                        isVisible: true,
-                        padding: 2,
-                        position: LegendPosition.top,
-                        offset: Offset(20, -150),
-                        orientation: LegendItemOrientation.vertical,
-                        alignment: ChartAlignment.far,
-                        legendItemBuilder:
-                            (legendText, series, point, seriesIndex) {
-                          return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Color(0xffDADADA),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(
-                                        Icons.arrow_upward,
-                                        color: Color(0xff940E0E),
-                                        size: 16,
-                                      ),
-                                      Text(
-                                        'الكبرى',
-                                        style: TextStyle(
-                                            color: ColorApp.black,
-                                            fontSize: 12),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(
-                                        Icons.arrow_downward,
-                                        color: Color(0xffC36363),
-                                        size: 16,
-                                      ),
-                                      Text(
-                                        'الصغرى',
-                                        style: TextStyle(
-                                            color: ColorApp.black,
-                                            fontSize: 12),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                      series: <CartesianSeries<dynamic, String>>[
-                        ColumnSeries<dynamic, String>(
-                            dataSource: [
-                              ChartData('K', 40, Color(0xffC36363)),
-                              ChartData('N', 70, Color(0xffC36363)),
-                              ChartData('P', 30, Color(0xffC36363)),
-                              ChartData('W', 60, Color(0xffC36363)),
-                            ],
-                            xValueMapper: (data, _) => data.x,
-                            yValueMapper: (data, _) => data.y,
-                            pointColorMapper: (data, _) => data.color,
-                            name: 'الصغرى',
-                            isVisibleInLegend: false),
-                        ColumnSeries<dynamic, String>(
-                            dataSource: [
-                              ChartData('K', 80, Color(0xff93D47E)),
-                              ChartData('N', 40, Color(0xff0F5412)),
-                              ChartData('P', 10, Color(0xff4E99A1)),
-                              ChartData('W', 30, Color(0xff4E59A1)),
-                            ],
-                            xValueMapper: (data, _) => data.x,
-                            yValueMapper: (data, _) => data.y,
-                            pointColorMapper: (data, _) => data.color,
-                            isVisibleInLegend: false),
-                        ColumnSeries<dynamic, String>(
-                          dataSource: [
-                            ChartData('K', 60, Color(0xff940E0E)),
-                            ChartData('N', 90, Color(0xff940E0E)),
-                            ChartData('P', 20, Color(0xff940E0E)),
-                            ChartData('W', 80, Color(0xff940E0E)),
+             BlocBuilder<FarmDataCubit, FarmDataState>(
+  builder: (context, state) {
+    if (state is FarmDataLoading) {
+      return const Center(child: CircularProgressIndicator());
+    } else if (state is FarmDataLoaded) {
+      final data = state.data;
+
+
+
+final minData = <ChartData>[
+  ChartData('K', double.parse((data['potassium'] * 0.9).toString()), Color(0xff93D47E)),  // -10% من البوتاسيوم
+  ChartData('N', double.parse((data['nitrogen'] * 1.1).toString()), Color(0xff0F5412)),  // +10% من النيتروجين
+  ChartData('P', double.parse((data['phosphorus'] * 0.95).toString()), Color(0xff4E99A1)),  // -5% من الفوسفور
+  ChartData('S', double.parse((data['soil_humidity'] * 0.95).toString()), Color(0xff4E59A1)),  // -5% من رطوبة التربة
+];
+  final midData = <ChartData>[
+  ChartData('N', double.parse(data['nitrogen'].toString()), Color(0xffC36363)),
+  ChartData('P', double.parse(data['phosphorus'].toString()), Color(0xffC36363)),
+  ChartData('K', double.parse(data['potassium'].toString()), Color(0xffC36363)),
+  ChartData('S', double.parse(data['soil_humidity'].toString()), Color(0xffC36363)),
+];
+
+final maxData = <ChartData>[
+  ChartData('K', double.parse((data['potassium'] * 1.1).toString()), Color(0xff940E0E)),  // +10% من البوتاسيوم
+  ChartData('N', double.parse((data['nitrogen'] * 1.2).toString()), Color(0xff940E0E)),  // +20% من النيتروجين
+  ChartData('P', double.parse((data['phosphorus'] * 1.15).toString()), Color(0xff940E0E)),  // +15% من الفوسفور
+  ChartData('S', double.parse((data['soil_humidity'] * 1.1).toString()), Color(0xff940E0E)),  // +10% من رطوبة التربة
+];
+
+
+      return Container(
+        height: 269.h,
+        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        child: Center(
+          child: SfCartesianChart(
+            primaryXAxis: CategoryAxis(),
+            primaryYAxis: NumericAxis(
+              minimum: 0,
+              maximum: 100,
+              interval: 10,
+            ),
+            legend: Legend(
+              isVisible: true,
+              padding: 2,
+              position: LegendPosition.top,
+              offset: Offset(20, -150),
+              orientation: LegendItemOrientation.vertical,
+              alignment: ChartAlignment.far,
+              legendItemBuilder: (legendText, series, point, seriesIndex) {
+                return Container(
+                  width:85.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+
+                    color: Color(0xffDADADA),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.arrow_upward, color: Color(0xff940E0E), size: 16),
+                            Text('الكبرى', style: TextStyle(color: ColorApp.black, fontSize: 12)),
                           ],
-                          xValueMapper: (data, _) => data.x,
-                          yValueMapper: (data, _) => data.y,
-                          pointColorMapper: (data, _) => data.color,
-                          name: 'الكبرى',
+                        ),
+                        Row(
+                          children: [
+                            Icon(Icons.arrow_downward, color: Color(0xffC36363), size: 16),
+                            Text('الصغرى', style: TextStyle(color: ColorApp.black, fontSize: 12)),
+                          ],
                         ),
                       ],
                     ),
-                  )),
+                  ),
+                );
+              },
+            ),
+            series: <CartesianSeries>[
+              ColumnSeries<ChartData, String>(
+                dataSource: minData,
+                xValueMapper: (data, _) => data.x,
+                yValueMapper: (data, _) => data.y,
+                pointColorMapper: (data, _) => data.color,
+                name: 'الصغرى',
+                isVisibleInLegend: false,
+              ),
+              ColumnSeries<ChartData, String>(
+                dataSource: midData,
+                xValueMapper: (data, _) => data.x,
+                yValueMapper: (data, _) => data.y,
+                pointColorMapper: (data, _) => data.color,
+                isVisibleInLegend: false,
+              ),
+              ColumnSeries<ChartData, String>(
+                dataSource: maxData,
+                xValueMapper: (data, _) => data.x,
+                yValueMapper: (data, _) => data.y,
+                pointColorMapper: (data, _) => data.color,
+                name: 'الكبرى',
+              ),
+            ],
+          ),
+        ),
+      );
+    } else if (state is FarmDataError) {
+      return Center(child: Text('خطأ في تحميل البيانات'));
+    } else {
+      return SizedBox.shrink();
+    }
+  },
+)
+
             ],
           ),
         );

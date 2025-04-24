@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
+import 'package:qardan/features/profile/presentation/manager/cubit/profile_cupbit.dart';
+import 'package:qardan/features/profile/presentation/manager/cubit/profile_state.dart';
 import 'package:qardan/features/profile/presentation/views/contact_us_view.dart';
 import 'package:qardan/features/profile/presentation/views/edit_profile_view.dart';
 import 'package:qardan/features/profile/presentation/views/setting_view.dart';
 import 'package:qardan/features/profile/presentation/views/weather_view.dart';
 
 class ProfileViewBody extends StatelessWidget {
-  const ProfileViewBody({super.key,  this.lat,  this.long});
+  const ProfileViewBody({super.key, this.lat, this.long});
 
   final double? lat;
-  final double ?long;
+  final double? long;
 
   @override
   Widget build(BuildContext context) {
@@ -22,64 +25,84 @@ class ProfileViewBody extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfileView()));
-            },
-            icon: const Icon(Icons.edit_outlined),
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfileView()));
+          //   },
+          //   icon: const Icon(Icons.edit_outlined),
+          // ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(height: 29.h),
-          const CircleAvatar(
-            radius: 40,
-            backgroundImage: NetworkImage('https://example.com/user.jpg'),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            'حسن محمد عبد الحميد احمد',
-            style: Styles.textStyle16.copyWith(color: ColorApp.black),
-          ),
-          SizedBox(height: 24.h),
-          Expanded(
-            child: ListView(
-              children: [
-                profileOption(
-                  Icons.person_outlined,
-                  'ملفي الشخصي',
-                  ontap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const EditProfileView()),
+      body: BlocProvider(
+        create: (_) => FarmerProfileCubit()..fetchFarmerProfile(), 
+        child: BlocBuilder<FarmerProfileCubit, FarmerProfileState>(
+          builder: (context, state) {
+            if (state is FarmerProfileLoading) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (state is FarmerProfileLoaded) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 29.h),
+                  const CircleAvatar(
+                    radius: 40,
+                    backgroundImage: NetworkImage('https://example.com/user.jpg'),
                   ),
-                ),
-                profileOption(
-                  Icons.settings_outlined,
-                  'الإعدادات',
-                  ontap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SettingView()),
+                  const SizedBox(height: 10),
+                  Text(
+                    state.name, 
+                    style: Styles.textStyle16.copyWith(color: ColorApp.black),
                   ),
-                ),
-                profileOption(
-                  Icons.cloud,
-                  'الطقس',
-                  ontap: () => _navigateToWeather(context),
-                ),
-                profileOption(
-                  Icons.handshake_outlined,
-                  'شاركنا مشكلتك',
-                  ontap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ContactUsView()),
+                 
+                  SizedBox(height: 24.h),
+                  Expanded(
+                    child: ListView(
+                      children: [
+                        profileOption(
+                          Icons.person_outlined,
+                          'ملفي الشخصي',
+                          ontap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) =>  EditProfileView(
+                               name: state.name, 
+                        phone:  state.phone,
+                        nationalId:  state.nationalId,
+                            )),
+                          ),
+                        ),
+                        profileOption(
+                          Icons.settings_outlined,
+                          'الإعدادات',
+                          ontap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const SettingView()),
+                          ),
+                        ),
+                        profileOption(
+                          Icons.cloud,
+                          'الطقس',
+                          ontap: () => _navigateToWeather(context),
+                        ),
+                        profileOption(
+                          Icons.handshake_outlined,
+                          'شاركنا مشكلتك',
+                          ontap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const ContactUsView()),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        ],
+                ],
+              );
+            } else if (state is FarmerProfileError) {
+              return Center(child: Text(state.message));
+            } else {
+              return const Center(child: Text('حدث خطأ غير متوقع'));
+            }
+          },
+        ),
       ),
     );
   }
