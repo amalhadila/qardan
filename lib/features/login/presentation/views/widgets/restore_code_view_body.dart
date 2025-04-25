@@ -39,14 +39,17 @@ class RestoreCodeViewBody extends StatelessWidget {
               child: BlocConsumer<RetrieveCodeCubit, RetrieveCodeState>(
                 listener: (context, state) {
                   if (state is RetrieveCodeSuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.message)),
-                    );
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const OtpView()),
-                    );
+  print("RetrieveCodeSuccess triggered");
+   WidgetsBinding.instance.addPostFrameCallback((_) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const OtpView()),
+    );
+  });
+
+
                   } else if (state is RetrieveCodeFailure) {
+                    print("RetrieveCodeerror triggered");
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(state.error)),
                     );

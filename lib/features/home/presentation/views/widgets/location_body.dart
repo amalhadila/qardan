@@ -116,9 +116,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => UpdateLocationCubit(),
-      child: Scaffold(
+    return  Scaffold(
         appBar: AppBar(
           title: Text('الموقع'),
           centerTitle: true,
@@ -193,7 +191,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
             );
           },
         ),
-      ),
+      
     );
   }
 }

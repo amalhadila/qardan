@@ -10,6 +10,8 @@ import 'package:qardan/features/home/presentation/views/bottom_bar_view.dart';
 import 'package:qardan/features/home/presentation/views/widgets/location_body.dart';
 import 'package:qardan/features/login/presentation/manger/cubit/login_cubit.dart';
 import 'package:qardan/features/login/presentation/views/restore_code_view.dart';
+import 'package:qardan/features/onboarding/views/widgets/onboardingScreenViewBody.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EnterCodeViewBody extends StatefulWidget {
   const EnterCodeViewBody({super.key});
@@ -117,8 +119,16 @@ class _EnterCodeViewBodyState extends State<EnterCodeViewBody> {
                     if (state is LoginSuccess) {
                       print("Token: ${state.token}");
                       print("Message: ${state.message}");
+                      final prefs = await SharedPreferences.getInstance();
+                        final isOnBoarding = prefs.getBool('ON_BOARDING') ?? true;
 
-                      await _checkLocationPermission(context);
+                        if (isOnBoarding) {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (_) => onboardingScreenViewBody()),
+                          );
+                        } else {
+                          await _checkLocationPermission(context);
+                        }
                     } else if (state is LoginFailure) {
                       print("Error: ${state.error}");
                       ScaffoldMessenger.of(context).showSnackBar(

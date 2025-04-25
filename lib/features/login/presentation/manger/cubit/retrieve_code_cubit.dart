@@ -29,16 +29,24 @@ class RetrieveCodeCubit extends Cubit<RetrieveCodeState> {
         }),
       );
 
+      print("Status Code: ${response.statusCode}");
+      print("Response Body: ${response.body}");
+
       final data = json.decode(response.body);
 
-      if (response.statusCode == 200 && data["success"] == true) {
+      // التحقق من حالة النجاح
+      if (response.statusCode == 200 ) {
         emit(RetrieveCodeSuccess(data["message"]));
       } else {
-        emit(RetrieveCodeFailure(data["message"] ?? "Unknown error"));
+        String errorMessage = data["message"] ?? "حدث خطأ غير معروف";
+        emit(RetrieveCodeFailure(errorMessage));
       }
     } catch (e) {
-      print(e);
-      emit(RetrieveCodeFailure("خطأ في الاتصال بالسيرفر: $e"));
+      // إذا حدث استثناء أثناء الاتصال
+      String errorMessage = "خطأ في الاتصال بالسيرفر: $e";
+      print(errorMessage);
+      emit(RetrieveCodeFailure(errorMessage));
     }
   }
 }
+

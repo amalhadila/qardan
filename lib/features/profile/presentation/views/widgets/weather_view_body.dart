@@ -66,12 +66,12 @@ final double? lat;
             ),
            Container(
             color: Color(0xffF5FAFF),
-            height: 92.h, 
+            height: 96.h, 
             child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: forecast.length,
         itemBuilder: (context, index) {
-          return _buildWeatherDay(forecast[index]["day"]!, forecast[index]["temp"]!);
+          return Center(child: _buildWeatherDay(forecast[index]["day"]!, forecast[index]["temp"]!));
         },
             ),
           ),
@@ -93,6 +93,8 @@ final double? lat;
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 10),
     child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(day, style: Styles.textStyle15.copyWith(color:Color(0xff9DB2CE))),
         Icon(Icons.wb_sunny, color: Color(0xffFFCD29)),
