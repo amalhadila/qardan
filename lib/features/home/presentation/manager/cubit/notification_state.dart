@@ -10,6 +10,10 @@ class AlertsSuccess extends AlertsState {
   final List<AlertModel> alerts;
 
   AlertsSuccess(this.alerts);
+    @override
+
+      List<Object> get props => [alerts];
+
 }
 
 class AlertsError extends AlertsState {

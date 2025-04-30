@@ -21,6 +21,7 @@ class LoginCubit extends Cubit<LoginState> {
         options: Options(
           headers: {
             "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "true",
           },
         ),
       );

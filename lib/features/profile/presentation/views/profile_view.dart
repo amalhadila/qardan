@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:qardan/features/profile/presentation/manager/cubit/logout_cubit_cubit.dart';
 import 'package:qardan/features/profile/presentation/manager/cubit/update_profile_cubit.dart';
 import 'package:qardan/features/profile/presentation/views/widgets/profile_view_body.dart';
 
@@ -10,8 +11,15 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UpdateProfileCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UpdateProfileCubit(),
+        ),
+        BlocProvider(
+        create: (_) => LogoutCubit(), 
+               ),
+      ],
       child: ProfileViewBody(lat: lat, long: long),
     );
   }

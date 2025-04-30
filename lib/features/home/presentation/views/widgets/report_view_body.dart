@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:qardan/core/theme/color_app.dart';
-import 'package:qardan/core/theme/styles.dart';
 import 'package:qardan/features/home/presentation/views/report_section_view.dart';
 
 class ReportViewBody extends StatefulWidget {
@@ -11,42 +9,43 @@ class ReportViewBody extends StatefulWidget {
 
 class _ReportViewBodyState extends State<ReportViewBody> {
   String selectedReport = "التقرير - الأسبوعي";
-
   final List<String> reports = [
     "التقرير - الأسبوعي",
     "التقرير - الشهري",
     "التقرير - السنوي",
   ];
 
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("التقارير"),
         centerTitle: true,
-        leading:  IconButton(
-                          icon: Icon(Icons.arrow_back_ios),
-                          onPressed: () => Navigator.pop(context),
-                        ),      
-      
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.pop(context),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-           Row(children: [
-            Icon(Icons.align_vertical_bottom_sharp),
-            Text('التقارير',style: Styles.textStyle24_inter.copyWith(color: ColorApp.black),)
-           ],),
-           SizedBox(height: 40.h,),
+            Row(
+              children: [
+                Icon(Icons.align_vertical_bottom_sharp),
+                Text(
+                  'التقارير',
+                  style: TextStyle(fontSize: 24, color: Colors.black),
+                )
+              ],
+            ),
+            SizedBox(height: 40.h),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 12),
               height: 52.h,
               width: 336.w,
               decoration: BoxDecoration(
-               // border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(8),
                 color: Color(0xffD9D9D9),
               ),
@@ -67,7 +66,6 @@ class _ReportViewBodyState extends State<ReportViewBody> {
                 ),
               ),
             ),
-           
             SizedBox(height: 25.h),
             Text(
               "القطاعات",
@@ -85,12 +83,21 @@ class _ReportViewBodyState extends State<ReportViewBody> {
                 itemCount: 6,
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: (){
-                       Navigator.push(context, MaterialPageRoute(builder:(context) => ReportSectionView()));
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ReportSectionView(
+                              sectorId: index + 1, 
+                              selectedReport: selectedReport,
+                           
+                          ),
+                        ),
+                      );
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                        color:  Color(0xffD9D9D9),
+                        color: Color(0xffD9D9D9),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       alignment: Alignment.center,

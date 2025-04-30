@@ -33,6 +33,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileState> {
         options: Options(
           headers: {
             'Authorization': 'Bearer $token',
+            "ngrok-skip-browser-warning": "true",
           },
         ),
       );

@@ -5,6 +5,7 @@ import 'package:qardan/core/shared_widgets.dart/loading_widgets.dart';
 import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
 import 'package:qardan/features/home/presentation/manager/cubit/farm_data_cubit.dart';
+import 'package:qardan/features/home/presentation/manager/cubit/farm_data_state.dart';
 import 'package:qardan/features/home/presentation/manager/cubit/weather_cubit_cubit.dart';
 import 'package:qardan/features/home/presentation/views/widgets/divider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -177,28 +178,31 @@ class HomeViewBody extends StatelessWidget {
     if (state is FarmDataLoading) {
       return const Center(child: CircularProgressIndicator());
     } else if (state is FarmDataLoaded) {
-      final data = state.data;
+      final data = state.sectors[0].sensorData;
+            final min_maxdata = state.sectors[0].stageMinMax;
+
 
 
 
 final minData = <ChartData>[
-  ChartData('K', double.parse((data['potassium'] * 0.9).toString()), Color(0xff93D47E)),  // -10% من البوتاسيوم
-  ChartData('N', double.parse((data['nitrogen'] * 1.1).toString()), Color(0xff0F5412)),  // +10% من النيتروجين
-  ChartData('P', double.parse((data['phosphorus'] * 0.95).toString()), Color(0xff4E99A1)),  // -5% من الفوسفور
-  ChartData('S', double.parse((data['soil_humidity'] * 0.95).toString()), Color(0xff4E59A1)),  // -5% من رطوبة التربة
+  ChartData('K', double.parse((min_maxdata!.potassiumMin??0).toString()), Color(0xff93D47E)), 
+  ChartData('N', double.parse((min_maxdata.nitrogenMin??0).toString()), Color(0xff0F5412)),  
+  ChartData('P', double.parse((min_maxdata.phosphorusMin??0).toString()), Color(0xff4E99A1)), 
+  ChartData('S', double.parse((min_maxdata.humidityMin??0).toString()), Color(0xff4E59A1)),  
 ];
   final midData = <ChartData>[
-  ChartData('N', double.parse(data['nitrogen'].toString()), Color(0xffC36363)),
-  ChartData('P', double.parse(data['phosphorus'].toString()), Color(0xffC36363)),
-  ChartData('K', double.parse(data['potassium'].toString()), Color(0xffC36363)),
-  ChartData('S', double.parse(data['soil_humidity'].toString()), Color(0xffC36363)),
+      ChartData('K', double.parse(data!.potassium.toString()), Color(0xffC36363)),
+
+  ChartData('N', double.parse(data!.nitrogen.toString()), Color(0xffC36363)),
+  ChartData('P', double.parse(data.phosphorus.toString()), Color(0xffC36363)),
+  ChartData('S', double.parse(data.humidity.toString()), Color(0xffC36363)),
 ];
 
 final maxData = <ChartData>[
-  ChartData('K', double.parse((data['potassium'] * 1.1).toString()), Color(0xff940E0E)),  // +10% من البوتاسيوم
-  ChartData('N', double.parse((data['nitrogen'] * 1.2).toString()), Color(0xff940E0E)),  // +20% من النيتروجين
-  ChartData('P', double.parse((data['phosphorus'] * 1.15).toString()), Color(0xff940E0E)),  // +15% من الفوسفور
-  ChartData('S', double.parse((data['soil_humidity'] * 1.1).toString()), Color(0xff940E0E)),  // +10% من رطوبة التربة
+  ChartData('K', double.parse((min_maxdata!.potassiumMax??0).toString()), Color(0xff940E0E)),  
+  ChartData('N', double.parse((min_maxdata.nitrogenMax??0).toString()), Color(0xff940E0E)),  
+  ChartData('P', double.parse((min_maxdata.phosphorusMax??0).toString()), Color(0xff940E0E)),  
+  ChartData('S', double.parse((min_maxdata.humidityMax??0).toString()), Color(0xff940E0E)),  
 ];
 
 

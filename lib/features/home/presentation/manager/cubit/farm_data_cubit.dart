@@ -1,9 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:dio/dio.dart';
+import 'package:qardan/features/home/data/model/farm_model.dart';
+import 'package:qardan/features/home/presentation/manager/cubit/farm_data_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-part 'farm_data_state.dart';
 
 class FarmDataCubit extends Cubit<FarmDataState> {
   FarmDataCubit() : super(FarmDataInitial());
@@ -19,37 +18,24 @@ class FarmDataCubit extends Cubit<FarmDataState> {
 
   Future<void> fetchFarmData() async {
     emit(FarmDataLoading());
-
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
 
-      print('Token: $token');
-
       if (token == null) {
-        emit(FarmDataError("No token found"));
+        emit(FarmDataError('Token not found'));
         return;
       }
 
       _dio.options.headers['Authorization'] = 'Bearer $token';
 
       final response = await _dio.get('sectors/farm-data');
-
-      print('Response Status: ${response.statusCode}');
-      print('Response Data: ${response.data}');
-
-      if (response.statusCode == 200) {
-        if (response.data != null && response.data.isNotEmpty) {
-          emit(FarmDataLoaded(response.data));
-        } else {
-          emit(FarmDataError("No data available in the response."));
-        }
-      } else {
-        emit(FarmDataError("Failed to load farm data: ${response.statusMessage}"));
-      }
+      final data = (response.data as List)
+          .map((e) => SectorData.fromJson(e))
+          .toList();
+      emit(FarmDataLoaded(data));
     } catch (e) {
-      print('Error: $e');
-      emit(FarmDataError("An error occurred: $e"));
+      emit(FarmDataError(e.toString()));
     }
   }
 }

@@ -4,6 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
+import 'package:qardan/features/login/presentation/views/enter_code_view.dart';
+import 'package:qardan/features/profile/presentation/manager/cubit/logout_cubit_cubit.dart';
+import 'package:qardan/features/profile/presentation/manager/cubit/logout_cubit_state.dart';
 import 'package:qardan/features/profile/presentation/manager/cubit/profile_cupbit.dart';
 import 'package:qardan/features/profile/presentation/manager/cubit/profile_state.dart';
 import 'package:qardan/features/profile/presentation/views/contact_us_view.dart';
@@ -91,6 +94,31 @@ class ProfileViewBody extends StatelessWidget {
                             MaterialPageRoute(builder: (context) => const ContactUsView()),
                           ),
                         ),
+                           BlocConsumer<LogoutCubit, LogoutState>(
+  listener: (context, state) {
+    if (state is LogoutSuccess) {
+      Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const EnterCodeView()),
+                          );
+    } else if (state is LogoutFailure) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(state.error)),
+      );
+    }
+  },
+  builder: (context, state) {
+    return profileOption(
+      Icons.logout,
+      'تسجيل خروج',
+      ontap: state is LogoutLoading
+          ?(){  CircularProgressIndicator() ;}
+                : () {
+              context.read<LogoutCubit>().logout();
+            },
+    );
+  },
+),
                       ],
                     ),
                   ),
