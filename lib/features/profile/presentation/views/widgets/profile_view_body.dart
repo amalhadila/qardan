@@ -49,7 +49,7 @@ class ProfileViewBody extends StatelessWidget {
                   SizedBox(height: 29.h),
                   const CircleAvatar(
                     radius: 40,
-                    backgroundImage: NetworkImage('https://example.com/user.jpg'),
+                    backgroundImage: AssetImage('assets/profile_image.jpg') ,
                   ),
                   const SizedBox(height: 10),
                   Text(

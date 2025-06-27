@@ -60,7 +60,7 @@ class _BottomBarViewDartState extends State<BottomBarViewDart> {
       unselectedItemColor:Color(0xff8E8E8E),
       items: const [
        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'رئيسية'),
-          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'تقارير'),
+          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'المهام'),
           BottomNavigationBarItem(icon: Icon(Icons.camera_enhance_outlined), label: 'كاميرا'),
           BottomNavigationBarItem(icon: Icon(Icons.notifications_active), label: 'اشعارات'),
           BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: 'انا'),

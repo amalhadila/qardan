@@ -32,7 +32,7 @@ class HomeViewBody extends StatelessWidget {
                             .copyWith(color: Color(0xffA6A6A6))),
                     CircleAvatar(
                         radius: 24.r,
-                        backgroundImage: AssetImage('assets/profile.jpg')),
+                        backgroundImage: AssetImage('assets/profile_image.jpg')),
                   ],
                 ),
               ),
@@ -49,12 +49,12 @@ class HomeViewBody extends StatelessWidget {
                   children: [
                     Icon(
                       WeatherIcons.day_cloudy,
-                      color: Color(0xff5C5D0E),
+                      color: Color(0xffA1D9EF),
                     ),
                     Text(
                       'الطقس',
                       style:
-                          Styles.textStyle14.copyWith(color: Color(0xff5C5D0E)),
+                          Styles.textStyle14.copyWith(color: Color.fromARGB(255, 29, 54, 63)),
                     )
                   ],
                 ),
@@ -185,17 +185,17 @@ class HomeViewBody extends StatelessWidget {
 
 
 final minData = <ChartData>[
-  ChartData('K', double.parse((min_maxdata!.potassiumMin??0).toString()), Color(0xff93D47E)), 
-  ChartData('N', double.parse((min_maxdata.nitrogenMin??0).toString()), Color(0xff0F5412)),  
-  ChartData('P', double.parse((min_maxdata.phosphorusMin??0).toString()), Color(0xff4E99A1)), 
-  ChartData('S', double.parse((min_maxdata.humidityMin??0).toString()), Color(0xff4E59A1)),  
+  ChartData('K', double.parse((min_maxdata!.potassiumMin??0).toString()), Color(0xffC36363)), 
+  ChartData('N', double.parse((min_maxdata.nitrogenMin??0).toString()), Color(0xffC36363)),  
+  ChartData('P', double.parse((min_maxdata.phosphorusMin??0).toString()), Color(0xffC36363)), 
+  ChartData('S', double.parse((min_maxdata.humidityMin??0).toString()), Color(0xffC36363)),  
 ];
   final midData = <ChartData>[
-      ChartData('K', double.parse(data!.potassium.toString()), Color(0xffC36363)),
+      ChartData('K', double.parse(data!.potassium.toString()), Color(0xff93D47E)),
 
-  ChartData('N', double.parse(data!.nitrogen.toString()), Color(0xffC36363)),
-  ChartData('P', double.parse(data.phosphorus.toString()), Color(0xffC36363)),
-  ChartData('S', double.parse(data.humidity.toString()), Color(0xffC36363)),
+  ChartData('N', double.parse(data!.nitrogen.toString()), Color(0xff0F5412)),
+  ChartData('P', double.parse(data.phosphorus.toString()), Color(0xff4E99A1)),
+  ChartData('S', double.parse(data.humidity.toString()), Color(0xff4E59A1)),
 ];
 
 final maxData = <ChartData>[
@@ -214,8 +214,8 @@ final maxData = <ChartData>[
             primaryXAxis: CategoryAxis(),
             primaryYAxis: NumericAxis(
               minimum: 0,
-              maximum: 100,
-              interval: 10,
+              maximum: 40,
+              interval: 50,
             ),
             legend: Legend(
               isVisible: true,

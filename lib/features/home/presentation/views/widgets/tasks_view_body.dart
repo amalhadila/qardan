@@ -77,27 +77,27 @@ class TasksViewBody extends StatelessWidget {
                                 ) ,
                                                  ),
                              ),
-                             GestureDetector(
-                              onTap: (){
-                              },
-                               child: Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xff1C631E),
-                                  borderRadius: BorderRadius.circular(20)
-                                ),
-                                child:Padding(
-                                  padding: const EdgeInsets.all(10.0).r,
-                                  child: Row(mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                   children: [
-                                    Text('الري',style: Styles.textStyle15_inter,),
-                                    Icon(Icons.water_drop,color: Colors.white,)
-                                   ],
+                            //  GestureDetector(
+                            //   onTap: (){
+                            //   },
+                            //    child: Container(
+                            //     decoration: BoxDecoration(
+                            //       color: Color(0xff1C631E),
+                            //       borderRadius: BorderRadius.circular(20)
+                            //     ),
+                            //     child:Padding(
+                            //       padding: const EdgeInsets.all(10.0).r,
+                            //       child: Row(mainAxisAlignment: MainAxisAlignment.start,
+                            //         mainAxisSize: MainAxisSize.min,
+                            //        children: [
+                            //         Text('الري',style: Styles.textStyle15_inter,),
+                            //         Icon(Icons.water_drop,color: Colors.white,)
+                            //        ],
                                      
-                                  ),
-                                ) ,
-                                                 ),
-                             ),
+                            //       ),
+                            //     ) ,
+                            //                      ),
+                            //  ),
                           ],
                         ),
                       ),

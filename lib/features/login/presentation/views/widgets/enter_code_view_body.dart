@@ -76,9 +76,9 @@ class _EnterCodeViewBodyState extends State<EnterCodeViewBody> {
               children: [
                 SizedBox(height: 80.h),
                 Image.asset(
-                  AssetImages.splash,
-                  width: 130.w,
-                  height: 115.h,
+                  AssetImages.logo,
+                  width: 170.w,
+                  height: 170.h,
                   fit: BoxFit.fill,
                 ),
                 Text('Qardan', style: Styles.textStyle20),

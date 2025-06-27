@@ -76,6 +76,8 @@ class NotificationItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
+                      Icon(Icons.alarm_on_outlined,color: ColorApp.primaryColor,),
+                       const SizedBox(width: 3),
                       Text(
                         'تذكير',
                         style: Styles.textStyle16.copyWith(color: ColorApp.black),
