@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
 import 'package:qardan/features/login/presentation/views/enter_code_view.dart';
-import 'package:qardan/features/onboarding/views/onboarding_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class LangViewBody extends StatefulWidget {
@@ -14,8 +13,7 @@ class LangViewBody extends StatefulWidget {
 }
 
 class _LangViewBodyState extends State<LangViewBody> {
-  String _selectedLanguage = "العربية"; // اللغة الافتراضية
-
+  String _selectedLanguage = "العربية"; 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -41,7 +39,6 @@ class _LangViewBodyState extends State<LangViewBody> {
             Text('اختر لغتك لاستخدام قردان', style: Styles.textStyle16),
             SizedBox(height: 80.h),
 
-            // العربية
             RadioListTile<String>(
               shape: RoundedRectangleBorder(
                 side: BorderSide(color: Color(0xFFDADADA)),
@@ -56,14 +53,13 @@ class _LangViewBodyState extends State<LangViewBody> {
               onChanged: (value) {
                 setState(() {
                   _selectedLanguage = value!;
-                  context.setLocale(Locale('ar')); // تغيير لغة التطبيق
+                  context.setLocale(Locale('ar')); 
                 });
               },
             ),
 
             SizedBox(height: 50.h),
 
-            // English
             RadioListTile<String>(
               shape: RoundedRectangleBorder(
                 side: BorderSide(color: Color(0xFFDADADA)),
@@ -78,14 +74,13 @@ class _LangViewBodyState extends State<LangViewBody> {
               onChanged: (value) {
                 setState(() {
                   _selectedLanguage = value!;
-                  context.setLocale(Locale('en')); // تغيير لغة التطبيق
+                  context.setLocale(Locale('en')); 
                 });
               },
             ),
 
             SizedBox(height: 100.h),
 
-            // زر القبول
             ElevatedButton(
               onPressed: () {
                 Navigator.push(

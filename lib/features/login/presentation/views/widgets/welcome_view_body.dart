@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
-import 'package:qardan/features/login/presentation/views/otp_view.dart';
 import 'package:qardan/features/onboarding/views/onboarding_view.dart';
 
 class WelcomeViewBody extends StatelessWidget {

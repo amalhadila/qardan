@@ -21,8 +21,8 @@ class StageMinMax {
 
   factory StageMinMax.fromJson(Map<String, dynamic>? json) {
     return StageMinMax(
-      humidityMin: json?['humidity']?['min']?.toDouble(),
-      humidityMax: json?['humidity']?['max']?.toDouble(),
+      humidityMin: json?['soil_humidity']?['min']?.toDouble(),
+      humidityMax: json?['soil_humidity']?['max']?.toDouble(),
       nitrogenMin: json?['nitrogen']?['min']?.toDouble(),
       nitrogenMax: json?['nitrogen']?['max']?.toDouble(),
       phosphorusMin: json?['phosphorus']?['min']?.toDouble(),

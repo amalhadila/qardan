@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,7 +6,6 @@ import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
 import 'package:qardan/features/home/presentation/manager/cubit/update_location_cubit.dart';
 import 'package:qardan/features/home/presentation/views/widgets/location_body.dart';
-import 'package:qardan/features/login/presentation/views/welcome_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class onboardingScreenViewBody extends StatelessWidget {
@@ -19,13 +17,15 @@ class onboardingScreenViewBody extends StatelessWidget {
           pageColor: ColorApp.backgroundColor, bodyTextStyle: Styles.textStyle16),
       image: Image.asset(
         'assets/onboarding1.png',
-        width: 295.w,
+        width: 270.w,
         height: 288.h,
         fit: BoxFit.fill,
       ),
       title: '',
       bodyWidget: Center(
+        widthFactor: .7,
         child: Text(
+          maxLines: 4,
           textAlign:TextAlign.center,
             'أهلا بيك يا فلاحنا الشاطر احنا هنا معاك عشان يبقي عندك حصاد لانهائي!',
             style: Styles.textStyle16),
@@ -36,13 +36,15 @@ class onboardingScreenViewBody extends StatelessWidget {
           pageColor: ColorApp.backgroundColor, bodyTextStyle: Styles.textStyle16),
       image: Image.asset(
         'assets/onboarding2.png',
-        width: 295.w,
+        width: 270.w,
         height: 288.h,
         fit: BoxFit.fill,
       ),
       title: '',
       bodyWidget: Center(
+         widthFactor: .7,
         child: Text(
+           maxLines: 4,
           textAlign:TextAlign.center,
             'خليك متابع حالة الطقس كل يوم وتوقعات الجو علشان تزرع صح.',
             style: Styles.textStyle16),
@@ -53,13 +55,15 @@ class onboardingScreenViewBody extends StatelessWidget {
           pageColor: ColorApp.backgroundColor, bodyTextStyle: Styles.textStyle16),
       image: Image.asset(
         'assets/onboarding3.png',
-        width: 295.w,
+        width: 270.w,
         height: 288.h,
         fit: BoxFit.fill,
       ),
       title: '',
       bodyWidget: Center(
+         widthFactor: .7,
         child: Text(
+           maxLines: 4,
           textAlign:TextAlign.center,
             'مش هيفوتك أي حاجه مهمة مع الإشعارات اللي بتفكرك بكل حاجه، من الري للجو للمواعيد المهمه.',
             style: Styles.textStyle16),
@@ -71,13 +75,15 @@ class onboardingScreenViewBody extends StatelessWidget {
           pageColor: ColorApp.backgroundColor, bodyTextStyle: Styles.textStyle16),
       image: Image.asset(
         'assets/onboarding4.png',
-        width: 295.w,
+        width: 270.w,
         height: 288.h,
         fit: BoxFit.fill,
       ),
       title: '',
       bodyWidget: Center(
+         widthFactor: .7,
         child: Text(
+           maxLines: 4,
           textAlign:TextAlign.center,
             'هتقدر تصور النبات بالكاميرا والذكاء الصناعي هيشخصلك المرض ويديك العلاج المناسب.',
             style: Styles.textStyle16),

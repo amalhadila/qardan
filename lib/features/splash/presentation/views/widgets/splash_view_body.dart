@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qardan/core/constants/asset_images.dart';
-import 'package:qardan/core/theme/styles.dart';
 import 'package:qardan/features/login/presentation/views/lang_view.dart';
-import 'package:qardan/features/onboarding/views/onboarding_view.dart';
 
 class SplashViewmodel extends StatefulWidget {
   const SplashViewmodel({super.key});

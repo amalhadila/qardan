@@ -29,14 +29,14 @@ class HomeViewBody extends StatelessWidget {
                   children: [
                     Text('أهلاً بك',
                         style: Styles.textStyle14
-                            .copyWith(color: Color(0xffA6A6A6))),
+                            .copyWith(color: const Color(0xffA6A6A6))),
                     CircleAvatar(
                         radius: 24.r,
-                        backgroundImage: AssetImage('assets/profile_image.jpg')),
+                        backgroundImage: const AssetImage('assets/profile_image.jpg')),
                   ],
                 ),
               ),
-              Center(child: customDivider()),
+              const Center(child: customDivider()),
               SizedBox(height: 15.h),
               Text(
                 'معلوماتك',
@@ -47,14 +47,14 @@ class HomeViewBody extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(
+                    const Icon(
                       WeatherIcons.day_cloudy,
                       color: Color(0xffA1D9EF),
                     ),
                     Text(
                       'الطقس',
                       style:
-                          Styles.textStyle14.copyWith(color: Color.fromARGB(255, 29, 54, 63)),
+                          Styles.textStyle14.copyWith(color: const Color.fromARGB(255, 29, 54, 63)),
                     )
                   ],
                 ),
@@ -65,7 +65,7 @@ class HomeViewBody extends StatelessWidget {
                 color: ColorApp.backgroundColor,
                 margin: EdgeInsets.symmetric(horizontal: 16.w),
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Color(0xffE8E8E8)),
+                  side: const BorderSide(color: Color(0xffE8E8E8)),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: 
@@ -73,7 +73,7 @@ class HomeViewBody extends StatelessWidget {
                 ListTile(
                   title: Row(
                     children: [
-                      Icon(Icons.location_on, color: ColorApp.black),
+                      const Icon(Icons.location_on, color: ColorApp.black),
                       Text(state.Weather["city"]),
                     ],
                   ),
@@ -86,7 +86,7 @@ class HomeViewBody extends StatelessWidget {
                 ),
               ),],
               if (state is WeatherCubitLoading) ...[
-                LoadingWidget()
+                const LoadingWidget()
               ],
               if (state is WeatherCubitFailure) ...[
                Text( state.errMessage.toString())
@@ -97,10 +97,10 @@ class HomeViewBody extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.grass, color: Color(0xff40AC44)),
+                    const Icon(Icons.grass, color: Color(0xff40AC44)),
                     Text('محاصيلك',
                         style: Styles.textStyle14
-                            .copyWith(color: Color(0xff0E4E11))),
+                            .copyWith(color: const Color(0xff0E4E11))),
                   ],
                 ),
               ),
@@ -132,13 +132,13 @@ class HomeViewBody extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.align_vertical_bottom,
                       color: Color(0xff2724E4),
                     ),
                     Text('مؤشرات',
                         style: Styles.textStyle14
-                            .copyWith(color: Color(0xff030E56))),
+                            .copyWith(color: const Color(0xff030E56))),
                   ],
                 ),
               ),
@@ -154,8 +154,8 @@ class HomeViewBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _indicator(Color(0xff93D47E), 'البوتاسيوم'),
-                        _indicator(Color(0xff4E99A1), 'الفوسفـات'),
+                        _indicator(const Color(0xff93D47E), 'البوتاسيوم'),
+                        _indicator(const Color(0xff4E99A1), 'الفوسفـات'),
                       ],
                     ),
                     SizedBox(
@@ -165,8 +165,8 @@ class HomeViewBody extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _indicator(Color(0xff0F5412), 'النيتروجين'),
-                        _indicator(Color(0xff4E59A1), 'الرطوبة'),
+                        _indicator(const Color(0xff0F5412), 'النيتروجين'),
+                        _indicator(const Color(0xff4E59A1), 'الرطوبة'),
                       ],
                     ),
                   ],
@@ -185,24 +185,24 @@ class HomeViewBody extends StatelessWidget {
 
 
 final minData = <ChartData>[
-  ChartData('K', double.parse((min_maxdata!.potassiumMin??0).toString()), Color(0xffC36363)), 
-  ChartData('N', double.parse((min_maxdata.nitrogenMin??0).toString()), Color(0xffC36363)),  
-  ChartData('P', double.parse((min_maxdata.phosphorusMin??0).toString()), Color(0xffC36363)), 
-  ChartData('S', double.parse((min_maxdata.humidityMin??0).toString()), Color(0xffC36363)),  
+  ChartData('K', double.parse((min_maxdata!.potassiumMin??0).toString()), const Color(0xffC36363)), 
+  ChartData('N', double.parse((min_maxdata.nitrogenMin??0).toString()), const Color(0xffC36363)),  
+  ChartData('P', double.parse((min_maxdata.phosphorusMin??0).toString()), const Color(0xffC36363)), 
+  ChartData('S', double.parse((min_maxdata.humidityMin??0).toString()), const Color(0xffC36363)),  
 ];
   final midData = <ChartData>[
-      ChartData('K', double.parse(data!.potassium.toString()), Color(0xff93D47E)),
+      ChartData('K', double.parse(data!.potassium.toString()), const Color(0xff93D47E)),
 
-  ChartData('N', double.parse(data!.nitrogen.toString()), Color(0xff0F5412)),
-  ChartData('P', double.parse(data.phosphorus.toString()), Color(0xff4E99A1)),
-  ChartData('S', double.parse(data.humidity.toString()), Color(0xff4E59A1)),
+  ChartData('N', double.parse(data!.nitrogen.toString()), const Color(0xff0F5412)),
+  ChartData('P', double.parse(data.phosphorus.toString()), const Color(0xff4E99A1)),
+  ChartData('S', double.parse(data.soilHumidity.toString()), const Color(0xff4E59A1)),
 ];
 
 final maxData = <ChartData>[
-  ChartData('K', double.parse((min_maxdata!.potassiumMax??0).toString()), Color(0xff940E0E)),  
-  ChartData('N', double.parse((min_maxdata.nitrogenMax??0).toString()), Color(0xff940E0E)),  
-  ChartData('P', double.parse((min_maxdata.phosphorusMax??0).toString()), Color(0xff940E0E)),  
-  ChartData('S', double.parse((min_maxdata.humidityMax??0).toString()), Color(0xff940E0E)),  
+  ChartData('K', double.parse((min_maxdata!.potassiumMax??0).toString()), const Color(0xff940E0E)),  
+  ChartData('N', double.parse((min_maxdata.nitrogenMax??0).toString()), const Color(0xff940E0E)),  
+  ChartData('P', double.parse((min_maxdata.phosphorusMax??0).toString()), const Color(0xff940E0E)),  
+  ChartData('S', double.parse((min_maxdata.humidityMax??0).toString()), const Color(0xff940E0E)),  
 ];
 
 
@@ -211,17 +211,17 @@ final maxData = <ChartData>[
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Center(
           child: SfCartesianChart(
-            primaryXAxis: CategoryAxis(),
-            primaryYAxis: NumericAxis(
+            primaryXAxis: const CategoryAxis(),
+            primaryYAxis: const NumericAxis(
               minimum: 0,
-              maximum: 40,
-              interval: 50,
+              maximum: 100,
+              interval: 10,
             ),
             legend: Legend(
               isVisible: true,
               padding: 2,
               position: LegendPosition.top,
-              offset: Offset(20, -150),
+              offset: const Offset(20, -150),
               orientation: LegendItemOrientation.vertical,
               alignment: ChartAlignment.far,
               legendItemBuilder: (legendText, series, point, seriesIndex) {
@@ -230,16 +230,16 @@ final maxData = <ChartData>[
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
 
-                    color: Color(0xffDADADA),
+                    color: const Color(0xffDADADA),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(10.0),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
-                        Row(
+                        const Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(Icons.arrow_upward, color: Color(0xff940E0E), size: 16),
@@ -286,9 +286,9 @@ final maxData = <ChartData>[
         ),
       );
     } else if (state is FarmDataError) {
-      return Center(child: Text('خطأ في تحميل البيانات'));
+      return const Center(child: Text('خطأ في تحميل البيانات'));
     } else {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
   },
 )
@@ -314,7 +314,7 @@ Widget _indicator(Color color, String text, {bool isCritical = false}) {
     child: Row(
       children: [
         Container(width: 12, height: 12, color: color),
-        SizedBox(width: 5),
+        const SizedBox(width: 5),
         Text(text,
             style: TextStyle(color: isCritical ? Colors.red : Colors.black)),
       ],

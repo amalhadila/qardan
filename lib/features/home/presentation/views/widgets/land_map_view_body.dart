@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qardan/core/theme/styles.dart';
 import 'package:qardan/features/home/presentation/views/widgets/divider.dart';
-import 'package:qardan/features/home/presentation/views/widgets/capture_view_body.dart'; // استورد صفحة الكاميرا
-
+import 'package:qardan/features/home/presentation/views/widgets/capture_view_body.dart'; 
 class LandMapViewBody extends StatefulWidget {
   const LandMapViewBody({super.key});
 
@@ -48,13 +47,13 @@ class _LandMapViewBodyState extends State<LandMapViewBody> {
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                       children: [
-                        landButton('٣', Color(0xff4CAF50), () => _navigateToCamera('3')),
+                        landButton('٣', Color(0xff4CAF50), () => ()),
                         Container(),
-                        landButton('٤', Color(0xff4CAF50), () => _navigateToCamera('4')),
-                        landButton('١', Color(0xff4CAF50), () => _navigateToCamera('1')),
-                        landButton('٥', Color(0xff4CAF50), () => _navigateToCamera('5')),
-                        landButton('٢', Color(0xff4CAF50), () => _navigateToCamera('2')),
-                        landButton('٦', Color(0xff005B04), () => _navigateToCamera('6')),
+                        landButton('٤', Color(0xff4CAF50), () => ()),
+                        landButton('١', Color(0xff4CAF50), () => ()),
+                        landButton('٥', Color(0xff4CAF50), () => ()),
+                        landButton('٢', Color(0xff4CAF50), () => ()),
+                        landButton('٦', Color(0xff005B04), () => ()),
                       ],
                     ),
                   ),

@@ -47,14 +47,12 @@ class ReportSectionViewBody extends StatelessWidget {
                         ? report.monthly
                         : report.yearly;
 
-                // تحقق من أن selectedData ليست فارغة
                 if (selectedData == null) {
                   return Center(child: Text("لا توجد بيانات متاحة"));
                 }
 
-                // معالجة القيم الفارغة
-                final humidityMin = report.stageMinMax?['humidity']?['min'] ?? 0;
-                final humidityMax = report.stageMinMax?['humidity']?['max'] ?? 100; // قيمة افتراضية
+                final humidityMin = report.stageMinMax?['soil_humidity']?['min'] ?? 0;
+                final humidityMax = report.stageMinMax?['soil_humidity']?['max'] ?? 100; // قيمة افتراضية
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +129,7 @@ class ReportSectionViewBody extends StatelessWidget {
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.start,
@@ -176,7 +174,7 @@ class ReportSectionViewBody extends StatelessWidget {
       ChartData('K', (report.stageMinMax?['potassium']?["min"] as num?)?.toDouble() ?? 0.0, Color(0xffC36363)),
       ChartData('N', (report.stageMinMax?['nitrogen']?["min"] as num?)?.toDouble() ?? 0.0, Color(0xffC36363)),
       ChartData('P', (report.stageMinMax?['phosphorus']?["min"] as num?)?.toDouble() ?? 0.0, Color(0xffC36363)),
-      ChartData('W', (report.stageMinMax?['humidity']?["min"] as num?)?.toDouble() ?? 0.0, Color(0xffC36363)),
+      ChartData('W', (report.stageMinMax?['soil_humidity']?["min"] as num?)?.toDouble() ?? 0.0, Color(0xffC36363)),
     ],
     xValueMapper: (data, _) => data.x,
     yValueMapper: (data, _) => data.y,
@@ -189,7 +187,7 @@ class ReportSectionViewBody extends StatelessWidget {
       ChartData('K', (selectedData['potassium'] as num?)?.toDouble() ?? 0.0, Color(0xff93D47E)),
       ChartData('N', (selectedData['nitrogen'] as num?)?.toDouble() ?? 0.0, Color(0xff0F5412)),
       ChartData('P', (selectedData['phosphorus'] as num?)?.toDouble() ?? 0.0, Color(0xff4E99A1)),
-      ChartData('W', (selectedData['humidity'] as num?)?.toDouble() ?? 0.0, Color(0xff4E59A1)),
+      ChartData('W', (selectedData['soil_humidity'] as num?)?.toDouble() ?? 0.0, Color(0xff4E59A1)),
     ],
     xValueMapper: (data, _) => data.x,
     yValueMapper: (data, _) => data.y,
@@ -201,7 +199,7 @@ class ReportSectionViewBody extends StatelessWidget {
       ChartData('K', (report.stageMinMax?['potassium']?["max"] as num?)?.toDouble() ?? 0.0, Color(0xff940E0E)),
       ChartData('N', (report.stageMinMax?['nitrogen']?["max"] as num?)?.toDouble() ?? 0.0, Color(0xff940E0E)),
       ChartData('P', (report.stageMinMax?['phosphorus']?["max"] as num?)?.toDouble() ?? 0.0, Color(0xff940E0E)),
-      ChartData('W', (report.stageMinMax?['humidity']?["max"] as num?)?.toDouble() ?? 0.0, Color(0xff940E0E)),
+      ChartData('W', (report.stageMinMax?['soil_humidity']?["max"] as num?)?.toDouble() ?? 0.0, Color(0xff940E0E)),
     ],
     xValueMapper: (data, _) => data.x,
     yValueMapper: (data, _) => data.y,

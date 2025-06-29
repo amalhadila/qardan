@@ -152,7 +152,7 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                   children: [
                     Image.asset(
                       'assets/ep_location.png',
-                      width: 232.w,
+                      width: 280.w,
                       height: 264.h,
                       fit: BoxFit.fill,
                     ),
@@ -162,11 +162,14 @@ class _LocationPermissionScreenState extends State<LocationPermissionScreen> {
                       style: Styles.textStyle20.copyWith(fontWeight: FontWeight.w700),
                     ),
                     SizedBox(height: 10.h),
-                    Text(
-                      'افتح الموقع علشان نقدر نشوف الأرض بتاعتك، '
-                      'ونتابع معاك كل حاجة تخص الزراعة.',
-                      textAlign: TextAlign.center,
-                      style: Styles.textStyle16.copyWith(color: Color(0xff8E8E8E)),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal:24),
+                      child: Text("افتحلنا الموقع بتاعك علشان نقدر نشوف الأرض بتاعتك، ونتابع معاك كل حاجة تخص الزراعة، زي حالة المحاصيل، الري، ونصايح الزراعة المناسبة لمنطقتك",
+                      
+                        textAlign: TextAlign.center,
+                        style: Styles.textStyle16.copyWith(color: Color(0xff8E8E8E),
+                         letterSpacing: -0.5),
+                      ),
                     ),
                     SizedBox(height: 40.h),
                     ElevatedButton(

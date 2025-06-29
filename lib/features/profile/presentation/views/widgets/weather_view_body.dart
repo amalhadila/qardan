@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qardan/core/shared_widgets.dart/loading_widgets.dart';
-import 'package:qardan/core/theme/color_app.dart';
 import 'package:qardan/core/theme/styles.dart';
 import 'package:qardan/features/home/presentation/manager/cubit/weather_cubit_cubit.dart';
 
@@ -17,7 +16,6 @@ final double? lat;
       appBar: AppBar(
         title: Text('الطقس'),
           elevation: 0,
-        actions: [IconButton(onPressed: (){},icon:Icon(Icons.edit_outlined))],
       ),
       body:BlocBuilder<WeatherCubitCubit, WeatherCubitState>(
       builder: (context, state) {
@@ -45,14 +43,9 @@ final double? lat;
                   Icon(Icons.wb_sunny, size: 50, color: Colors.amber),
                   SizedBox(height: 8),
                   Text('${state.Weather["temperature"]}°C', style: Styles.textStyle20,),
-                  //Text('22°C / 11°C', style:Styles.textStyle15),
                   Text('${state.Weather["description"]}', style: Styles.textStyle15),
                   SizedBox(height: 8),
-                  //Text(' ☁️ 0%', style: Styles.textStyle15),
-                  //SizedBox(height: 8),
-                  //Text('النهاردة يوم مش كويس لرش المبيدات الحشرية.', style: Styles.textStyle15.copyWith(color: Color(0xff8B978B))),
-                  //SizedBox(height: 8),
-                  //Text('غروب الشمس 5:12 م', style: Styles.textStyle15),
+                
                 ],
               ),
             ),

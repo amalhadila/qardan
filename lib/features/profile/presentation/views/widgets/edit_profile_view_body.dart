@@ -79,7 +79,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
                             radius: 50,
                             backgroundImage: _image != null
                                 ? FileImage(_image!)
-                                : AssetImage("assets/placeholder.png") as ImageProvider,
+                                : AssetImage('assets/profile_image.jpg')  as ImageProvider,
                           ),
                           Positioned(
                             bottom: 0,

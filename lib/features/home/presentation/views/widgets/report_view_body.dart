@@ -33,8 +33,8 @@ class _ReportViewBodyState extends State<ReportViewBody> {
           children: [
             Row(
               children: [
-                Icon(Icons.align_vertical_bottom_sharp),
-                Text(
+                const Icon(Icons.align_vertical_bottom_sharp),
+                const Text(
                   'التقارير',
                   style: TextStyle(fontSize: 24, color: Colors.black),
                 )

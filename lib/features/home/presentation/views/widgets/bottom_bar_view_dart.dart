@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qardan/core/theme/color_app.dart';
-import 'package:qardan/core/theme/styles.dart';
 import 'package:qardan/features/home/presentation/views/capture_view.dart';
 import 'package:qardan/features/home/presentation/views/home_view.dart';
 import 'package:qardan/features/home/presentation/views/notification_view.dart';
-import 'package:qardan/features/home/presentation/views/widgets/tasks_view_body.dart';
+import 'package:qardan/features/home/presentation/views/tasks_view.dart';
 import 'package:qardan/features/profile/presentation/views/profile_view.dart';
 
 class BottomBarViewDart extends StatefulWidget {
@@ -35,7 +33,7 @@ class _BottomBarViewDartState extends State<BottomBarViewDart> {
     super.initState();
     _pages = [
      HomeView(lat: widget.lat,long: widget.long,),
-    TasksViewBody(),
+    TasksView(),
     CaptureView(),
     NotificationView(),
     ProfileView(lat: widget.lat,long: widget.long,),
